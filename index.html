@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mij's Magical Emporium</title>
+
+  <!-- Tailwind & Iconen -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- Animatie achtergrond -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
   <style>
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .fade-in { animation: fadeIn 1.5s ease-in-out; }
@@ -17,10 +22,10 @@
 </head>
 
 <body class="bg-gradient-to-br from-purple-900 to-indigo-800 text-white">
-  <!-- Vanta.js Background -->
+  <!-- Vanta.js achtergrond -->
   <div id="vanta-animation" class="vanta-container"></div>
 
-  <!-- Loading Screen -->
+  <!-- Loading scherm -->
   <div id="loading-screen" class="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center z-50 transition-opacity duration-1000">
     <div class="text-center">
       <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-wider">MIJ'S</h1>
@@ -30,9 +35,8 @@
     </div>
   </div>
 
-  <!-- Main Content -->
+  <!-- Inhoud -->
   <div id="main-content" class="opacity-0 min-h-screen flex flex-col">
-    <!-- Header -->
     <header class="py-6 px-4 md:px-8 lg:px-16 backdrop-blur-sm bg-black bg-opacity-30 shadow-lg fixed top-0 left-0 right-0 z-40">
       <div class="container mx-auto flex justify-between items-center">
         <a href="#home" class="text-3xl font-bold flex items-center">
@@ -54,7 +58,7 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section id="home" class="flex-grow flex items-center justify-center text-center py-32 px-4 md:px-8 lg:px-16">
       <div class="max-w-2xl backdrop-blur-sm bg-black bg-opacity-30 p-8 rounded-xl shadow-2xl mt-12">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
@@ -70,28 +74,25 @@
       </div>
     </section>
 
-    <!-- Shop Section -->
+    <!-- Shop -->
     <section id="shop" class="py-24 px-4 md:px-8 lg:px-16 bg-black bg-opacity-40 backdrop-blur-sm">
       <div class="container mx-auto text-center">
         <h2 class="text-4xl font-bold mb-12">✨ Our Magical Collection ✨</h2>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           <div class="bg-black bg-opacity-30 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-            <img src="https://images.unsplash.com/photo-1616628182506-3e3a43e6b719?auto=format&fit=crop&w=600&q=80" alt="Magic Crystal" class="rounded-lg mb-4">
+            <img src="https://images.unsplash.com/photo-1616628182506-3e3a43e6b719?auto=format&fit=crop&w=600&q=80" class="rounded-lg mb-4">
             <h3 class="text-2xl font-bold mb-2">Enchanted Crystal</h3>
             <p class="text-purple-200 mb-4">A shimmering crystal said to hold ancient power.</p>
             <button class="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition">Add to Cart</button>
           </div>
-
           <div class="bg-black bg-opacity-30 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-            <img src="https://images.unsplash.com/photo-1608645812312-dc1c8a82bca3?auto=format&fit=crop&w=600&q=80" alt="Potion" class="rounded-lg mb-4">
+            <img src="https://images.unsplash.com/photo-1608645812312-dc1c8a82bca3?auto=format&fit=crop&w=600&q=80" class="rounded-lg mb-4">
             <h3 class="text-2xl font-bold mb-2">Mystic Potion</h3>
             <p class="text-purple-200 mb-4">Brewed with rare herbs and moonlight essence.</p>
             <button class="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition">Add to Cart</button>
           </div>
-
           <div class="bg-black bg-opacity-30 rounded-xl p-6 shadow-lg hover:scale-105 transition">
-            <img src="https://images.unsplash.com/photo-1609944350853-18feefee1868?auto=format&fit=crop&w=600&q=80" alt="Candle" class="rounded-lg mb-4">
+            <img src="https://images.unsplash.com/photo-1609944350853-18feefee1868?auto=format&fit=crop&w=600&q=80" class="rounded-lg mb-4">
             <h3 class="text-2xl font-bold mb-2">Starlight Candle</h3>
             <p class="text-purple-200 mb-4">Burns with an ethereal glow that calms the soul.</p>
             <button class="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition">Add to Cart</button>
@@ -110,10 +111,8 @@
   <div id="auth-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
     <div class="bg-black bg-opacity-50 backdrop-blur-lg rounded-2xl shadow-2xl p-8 w-80 text-center border border-purple-600">
       <h2 class="text-3xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-purple-500 text-transparent bg-clip-text">Welcome</h2>
-
       <input id="email" type="email" placeholder="Email" class="w-full mb-3 px-4 py-2 rounded-lg bg-purple-900 bg-opacity-40 text-white placeholder-purple-300 focus:outline-none">
       <input id="password" type="password" placeholder="Password" class="w-full mb-6 px-4 py-2 rounded-lg bg-purple-900 bg-opacity-40 text-white placeholder-purple-300 focus:outline-none">
-
       <button id="login-btn" class="w-full mb-3 px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold hover:scale-105 transition">Login</button>
       <button id="register-btn" class="w-full mb-3 px-6 py-2 border border-purple-400 rounded-full font-semibold hover:bg-purple-800 transition">Register</button>
       <button id="google-login" class="w-full mb-6 px-6 py-2 bg-red-500 hover:bg-red-600 rounded-full font-semibold transition">Login with Google</button>
@@ -121,54 +120,33 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- JS: VANTA + Firebase -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
       feather.replace();
-
-      function startVanta() {
+      const startVanta = () => {
         if (typeof VANTA !== "undefined" && VANTA.NET) {
-          VANTA.NET({
-            el: "#vanta-animation",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x7d4aff,
-            backgroundColor: 0x0,
-            points: 10.00,
-            maxDistance: 22.00,
-            spacing: 18.00
-          });
-          console.log("✅ Vanta gestart");
-        } else {
-          console.warn("⏳ Wachten op VANTA...");
-          setTimeout(startVanta, 300);
-        }
-      }
-
+          VANTA.NET({ el: "#vanta-animation", color: 0x7d4aff, backgroundColor: 0x0 });
+        } else setTimeout(startVanta, 300);
+      };
       startVanta();
-
       setTimeout(() => {
-        const loadingScreen = document.getElementById('loading-screen');
-        const mainContent = document.getElementById('main-content');
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-          loadingScreen.style.display = 'none';
-          mainContent.classList.remove('opacity-0');
-          mainContent.classList.add('fade-in');
-        }, 1000);
+        document.getElementById("loading-screen").style.opacity = "0";
+        setTimeout(() => document.getElementById("loading-screen").style.display = "none", 1000);
       }, 2500);
     });
   </script>
 
-  <!-- Firebase AUTH -->
+  <!-- ✅ FIREBASE AUTH -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      GoogleAuthProvider,
+      signInWithPopup
+    } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC8Bq01aJvmzhNC95o0ZgP8DIFL0Y1ySyg",
@@ -176,14 +154,13 @@
       projectId: "demosite-2025",
       storageBucket: "demosite-2025.appspot.com",
       messagingSenderId: "76301651397",
-      appId: "1:76301651397:web:882a1edfefecdf8b5a8fac"
+      appId: "1:76301651397:web:882a1edfefecdf8b5a8fac",
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
-    // Elements
     const modal = document.getElementById("auth-modal");
     const loginBtn = document.getElementById("login-btn");
     const registerBtn = document.getElementById("register-btn");
@@ -193,9 +170,26 @@
     window.openAuthModal = () => modal.classList.remove("hidden");
     closeModal.onclick = () => modal.classList.add("hidden");
 
+    // Register
+    registerBtn.onclick = async () => {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      console.log("Registering:", email);
+      if (!email || !password) return alert("⚠️ Vul e-mail en wachtwoord in!");
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("🎉 Account created successfully!");
+        modal.classList.add("hidden");
+      } catch (error) {
+        console.error("❌ Fout bij registratie:", error);
+        alert("⚠️ " + error.message);
+      }
+    };
+
+    // Login
     loginBtn.onclick = async () => {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
       try {
         await signInWithEmailAndPassword(auth, email, password);
         alert("✨ Logged in successfully!");
@@ -205,21 +199,7 @@
       }
     };
 
-    registerBtn.onclick = async () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  console.log("Email:", email, "Password:", password); // ✅ toegevoegd
-
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    alert("🎉 Account created successfully!");
-    modal.classList.add("hidden");
-  } catch (error) {
-    alert("⚠️ " + error.message);
-  }
-};
-
+    // Google Login
     googleBtn.onclick = async () => {
       try {
         await signInWithPopup(auth, provider);
@@ -232,5 +212,3 @@
   </script>
 </body>
 </html>
-
-
