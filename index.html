@@ -48,8 +48,8 @@
           </ul>
         </nav>
         <div class="flex items-center space-x-4">
-          <button class="p-2 hover:bg-purple-700 rounded-full transition"><i data-feather="search"></i></button>
           <button class="p-2 hover:bg-purple-700 rounded-full transition"><i data-feather="shopping-cart"></i></button>
+          <button onclick="openAuthModal()" class="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-bold hover:from-pink-600 hover:to-purple-700 transition">Login</button>
         </div>
       </div>
     </header>
@@ -76,7 +76,6 @@
         <h2 class="text-4xl font-bold mb-12">✨ Our Magical Collection ✨</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          <!-- Product 1 -->
           <div class="bg-black bg-opacity-30 rounded-xl p-6 shadow-lg hover:scale-105 transition">
             <img src="https://images.unsplash.com/photo-1616628182506-3e3a43e6b719?auto=format&fit=crop&w=600&q=80" alt="Magic Crystal" class="rounded-lg mb-4">
             <h3 class="text-2xl font-bold mb-2">Enchanted Crystal</h3>
@@ -84,7 +83,6 @@
             <button class="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition">Add to Cart</button>
           </div>
 
-          <!-- Product 2 -->
           <div class="bg-black bg-opacity-30 rounded-xl p-6 shadow-lg hover:scale-105 transition">
             <img src="https://images.unsplash.com/photo-1608645812312-dc1c8a82bca3?auto=format&fit=crop&w=600&q=80" alt="Potion" class="rounded-lg mb-4">
             <h3 class="text-2xl font-bold mb-2">Mystic Potion</h3>
@@ -92,7 +90,6 @@
             <button class="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition">Add to Cart</button>
           </div>
 
-          <!-- Product 3 -->
           <div class="bg-black bg-opacity-30 rounded-xl p-6 shadow-lg hover:scale-105 transition">
             <img src="https://images.unsplash.com/photo-1609944350853-18feefee1868?auto=format&fit=crop&w=600&q=80" alt="Candle" class="rounded-lg mb-4">
             <h3 class="text-2xl font-bold mb-2">Starlight Candle</h3>
@@ -103,33 +100,25 @@
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 px-4 md:px-8 lg:px-16 text-center">
-      <div class="container mx-auto max-w-3xl">
-        <h2 class="text-4xl font-bold mb-6">About Mij's Magical Emporium</h2>
-        <p class="text-purple-100 text-lg">
-          At Mij's, we believe in the beauty of the mystical and the charm of the unknown.
-          Each product is handpicked to inspire wonder, joy, and a touch of magic in everyday life.
-        </p>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 px-4 md:px-8 lg:px-16 bg-black bg-opacity-40 text-center">
-      <div class="container mx-auto max-w-3xl">
-        <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
-        <p class="text-purple-100 mb-8">Have a question or a magical request? Reach out!</p>
-        <a href="mailto:info@mijsemporium.com"
-          class="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-bold hover:from-pink-600 hover:to-purple-700 transition">
-          ✉️ Send an Email
-        </a>
-      </div>
-    </section>
-
     <!-- Footer -->
     <footer class="py-8 px-4 md:px-8 lg:px-16 backdrop-blur-sm bg-black bg-opacity-30 text-center border-t border-purple-800">
       <p class="text-purple-300">© 2025 Mij's Magical Emporium. All rights reserved.</p>
     </footer>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="auth-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div class="bg-black bg-opacity-50 backdrop-blur-lg rounded-2xl shadow-2xl p-8 w-80 text-center border border-purple-600">
+      <h2 class="text-3xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-purple-500 text-transparent bg-clip-text">Welcome</h2>
+
+      <input id="email" type="email" placeholder="Email" class="w-full mb-3 px-4 py-2 rounded-lg bg-purple-900 bg-opacity-40 text-white placeholder-purple-300 focus:outline-none">
+      <input id="password" type="password" placeholder="Password" class="w-full mb-6 px-4 py-2 rounded-lg bg-purple-900 bg-opacity-40 text-white placeholder-purple-300 focus:outline-none">
+
+      <button id="login-btn" class="w-full mb-3 px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold hover:scale-105 transition">Login</button>
+      <button id="register-btn" class="w-full mb-3 px-6 py-2 border border-purple-400 rounded-full font-semibold hover:bg-purple-800 transition">Register</button>
+      <button id="google-login" class="w-full mb-6 px-6 py-2 bg-red-500 hover:bg-red-600 rounded-full font-semibold transition">Login with Google</button>
+      <button id="close-modal" class="text-purple-300 hover:text-pink-300 text-sm">Close</button>
+    </div>
   </div>
 
   <!-- Scripts -->
@@ -137,57 +126,49 @@
     document.addEventListener('DOMContentLoaded', () => {
       feather.replace();
 
-      // Wacht tot VANTA beschikbaar is, en start pas dan
       function startVanta() {
-        if (window.VANTA && typeof VANTA.NET === "function") {
-          try {
-            VANTA.NET({
-              el: "#vanta-animation",
-              mouseControls: true,
-              touchControls: true,
-              gyroControls: false,
-              minHeight: 200.00,
-              minWidth: 200.00,
-              scale: 1.00,
-              scaleMobile: 1.00,
-              color: 0x7d4aff,
-              backgroundColor: 0x0,
-              points: 10.00,
-              maxDistance: 22.00,
-              spacing: 18.00
-            });
-            console.log("✅ Vanta gestart");
-          } catch (e) {
-            console.error("⚠️ Fout bij starten VANTA:", e);
-          }
+        if (typeof VANTA !== "undefined" && VANTA.NET) {
+          VANTA.NET({
+            el: "#vanta-animation",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x7d4aff,
+            backgroundColor: 0x0,
+            points: 10.00,
+            maxDistance: 22.00,
+            spacing: 18.00
+          });
+          console.log("✅ Vanta gestart");
         } else {
-          console.warn("⏳ VANTA nog niet geladen, probeer opnieuw...");
+          console.warn("⏳ Wachten op VANTA...");
           setTimeout(startVanta, 300);
         }
       }
 
       startVanta();
 
-      // Fade-out loading screen ALTIJD uitvoeren, ongeacht VANTA
       setTimeout(() => {
         const loadingScreen = document.getElementById('loading-screen');
         const mainContent = document.getElementById('main-content');
-        if (loadingScreen && mainContent) {
-          loadingScreen.style.opacity = '0';
-          setTimeout(() => {
-            loadingScreen.style.display = 'none';
-            mainContent.classList.remove('opacity-0');
-            mainContent.classList.add('fade-in');
-          }, 1000);
-        }
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          mainContent.classList.remove('opacity-0');
+          mainContent.classList.add('fade-in');
+        }, 1000);
       }, 2500);
     });
   </script>
 
-  <!-- Firebase via CDN -->
+  <!-- Firebase AUTH -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC8Bq01aJvmzhNC95o0ZgP8DIFL0Y1ySyg",
@@ -195,15 +176,58 @@
       projectId: "demosite-2025",
       storageBucket: "demosite-2025.firebasestorage.app",
       messagingSenderId: "76301651397",
-      appId: "1:76301651397:web:882a1edfefecdf8b5a8fac",
-      measurementId: "G-24P8D1RSZ2"
+      appId: "1:76301651397:web:882a1edfefecdf8b5a8fac"
     };
 
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
 
-    console.log("✅ Firebase verbonden:", app.name);
+    // Elements
+    const modal = document.getElementById("auth-modal");
+    const loginBtn = document.getElementById("login-btn");
+    const registerBtn = document.getElementById("register-btn");
+    const googleBtn = document.getElementById("google-login");
+    const closeModal = document.getElementById("close-modal");
+
+    window.openAuthModal = () => modal.classList.remove("hidden");
+    closeModal.onclick = () => modal.classList.add("hidden");
+
+    loginBtn.onclick = async () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("✨ Logged in successfully!");
+        modal.classList.add("hidden");
+      } catch (error) {
+        alert("⚠️ " + error.message);
+      }
+    };
+
+    registerBtn.onclick = async () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("🎉 Account created successfully!");
+        modal.classList.add("hidden");
+      } catch (error) {
+        alert("⚠️ " + error.message);
+      }
+    };
+
+    googleBtn.onclick = async () => {
+      try {
+        await signInWithPopup(auth, provider);
+        alert("🌟 Logged in with Google!");
+        modal.classList.add("hidden");
+      } catch (error) {
+        alert("⚠️ " + error.message);
+      }
+    };
   </script>
 </body>
 </html>
+
 
