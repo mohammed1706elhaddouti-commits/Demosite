@@ -206,16 +206,19 @@
     };
 
     registerBtn.onclick = async () => {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("🎉 Account created successfully!");
-        modal.classList.add("hidden");
-      } catch (error) {
-        alert("⚠️ " + error.message);
-      }
-    };
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  console.log("Email:", email, "Password:", password); // ✅ toegevoegd
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    alert("🎉 Account created successfully!");
+    modal.classList.add("hidden");
+  } catch (error) {
+    alert("⚠️ " + error.message);
+  }
+};
 
     googleBtn.onclick = async () => {
       try {
