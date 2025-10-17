@@ -134,46 +134,76 @@
 
   <!-- Scripts -->
   <script>
-    VANTA.NET({
-      el: "#vanta-animation",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0x7d4aff,
-      backgroundColor: 0x0,
-      points: 10.00,
-      maxDistance: 22.00,
-      spacing: 18.00
+    document.addEventListener('DOMContentLoaded', () => {
+      feather.replace();
+
+      // Wacht tot VANTA beschikbaar is, en start pas dan
+      function startVanta() {
+        if (window.VANTA && typeof VANTA.NET === "function") {
+          try {
+            VANTA.NET({
+              el: "#vanta-animation",
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              minHeight: 200.00,
+              minWidth: 200.00,
+              scale: 1.00,
+              scaleMobile: 1.00,
+              color: 0x7d4aff,
+              backgroundColor: 0x0,
+              points: 10.00,
+              maxDistance: 22.00,
+              spacing: 18.00
+            });
+            console.log("✅ Vanta gestart");
+          } catch (e) {
+            console.error("⚠️ Fout bij starten VANTA:", e);
+          }
+        } else {
+          console.warn("⏳ VANTA nog niet geladen, probeer opnieuw...");
+          setTimeout(startVanta, 300);
+        }
+      }
+
+      startVanta();
+
+      // Fade-out loading screen ALTIJD uitvoeren, ongeacht VANTA
+      setTimeout(() => {
+        const loadingScreen = document.getElementById('loading-screen');
+        const mainContent = document.getElementById('main-content');
+        if (loadingScreen && mainContent) {
+          loadingScreen.style.opacity = '0';
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            mainContent.classList.remove('opacity-0');
+            mainContent.classList.add('fade-in');
+          }, 1000);
+        }
+      }, 2500);
     });
+  </script>
 
-   </script>
+  <!-- Firebase via CDN -->
   <script type="module">
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyC8Bq01aJvmzhNC95o0ZgP8DIFL0Y1ySyg",
-  authDomain: "demosite-2025.firebaseapp.com",
-  projectId: "demosite-2025",
-  storageBucket: "demosite-2025.firebasestorage.app",
-  messagingSenderId: "76301651397",
-  appId: "1:76301651397:web:882a1edfefecdf8b5a8fac",
-  measurementId: "G-24P8D1RSZ2"
-};
+    const firebaseConfig = {
+      apiKey: "AIzaSyC8Bq01aJvmzhNC95o0ZgP8DIFL0Y1ySyg",
+      authDomain: "demosite-2025.firebaseapp.com",
+      projectId: "demosite-2025",
+      storageBucket: "demosite-2025.firebasestorage.app",
+      messagingSenderId: "76301651397",
+      appId: "1:76301651397:web:882a1edfefecdf8b5a8fac",
+      measurementId: "G-24P8D1RSZ2"
+    };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-   console.log("✅ Firebase verbonden:", app.name);
-</script>
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    console.log("✅ Firebase verbonden:", app.name);
+  </script>
 </body>
 </html>
+
